@@ -91,17 +91,17 @@ app.get('/api/:servants',(request,response)=>{
 
 
 app.get('/home/:id', async(request, response)=>{
-    db.collection('servants').find().toArray()
-        .then(result => {
-                    let query = request.params.id // Your lookup to find Kiruya's data.  In this, req.params.id would be helpful.
-                    for(let i = 0;i<result.length;i++){
-                       if(result[i].servant.name.toLowerCase()===query){
-                       let info = result[i]
-                        response.render('template.ejs', {info})
-                       }
-                    }
-                }).catch(error=>console.error(error))     
-})
+        db.collection('servants').find().toArray()
+            .then(result => {
+                        let query = request.params.id // Your lookup to find Kiruya's data.  In this, req.params.id would be helpful.
+                        for(let i = 0;i<result.length;i++){
+                        if(result[i].servant.name.toLowerCase()===query){
+                        let info = result[i]
+                            response.render('template.ejs', {info})
+                        }
+                        }
+                    }).catch(error=>console.error(error))     
+    })
 
 app.post('/simulator', (request, response) => {
     db.collection('simulator').insertOne({text: request.body.text})
